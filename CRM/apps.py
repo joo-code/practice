@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class ErpConfig(AppConfig):
+class CRMConfig(AppConfig):
     name = 'CRM'

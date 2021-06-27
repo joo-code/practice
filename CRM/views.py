@@ -1,12 +1,11 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import Question
 
 # Create your views here.
 def index(request):
     return HttpResponse("CRM PAGE.")
-
-
-
+    
 #***********************************************************************#
 # Original Theme
 class theme :
@@ -49,7 +48,19 @@ class theme :
             'page' : page
         }
         return render(request, './theme/05_blank.html', context)
-
+# ---------------------------------- [edit] ---------------------------------- #
+    def theme_practice(request):
+        print("PAGE : theme_practice")
+        question_list = Question.objects.order_by('-create_date')
+        context = {'question_list': question_list}
+        return render(request, './theme/05_practice.html', context)
+        
+    # def theme_practice_detail(request, question_id):
+    #     print("PAGE : theme_practice_detail")
+    #     question = Question.objects.get(id=question_id)
+    #     context = {'question': question}
+    #     return render(request, './theme/05_practice.html', context)
+# ---------------------------------- [edit] ---------------------------------- #
     def theme_UI_Element(request, page):
         print("PAGE : ",page)
 

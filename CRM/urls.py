@@ -3,10 +3,10 @@ from django.urls import path
 from CRM import views
 
 urlpatterns = [
-    path('test/', views.index),
+    # path('test/', views.index),
 
-
-
+# ---------------------------------- [edit] ---------------------------------- #
+    path('theme/practice/', views.theme.theme_practice, name='05_practice.html'),
 #***********************************************************************#
     # Original Theme
     path('theme/index/', views.theme.theme_index, name='01_index.html'),
