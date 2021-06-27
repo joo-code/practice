@@ -7,6 +7,7 @@ urlpatterns = [
 
 # ---------------------------------- [edit] ---------------------------------- #
     path('theme/practice/', views.theme.theme_practice, name='05_practice.html'),
+    path('theme/practice/<int:question_id>/', views.theme.theme_practice_detail, name='05_practice_detail.html'),
 #***********************************************************************#
     # Original Theme
     path('theme/index/', views.theme.theme_index, name='01_index.html'),

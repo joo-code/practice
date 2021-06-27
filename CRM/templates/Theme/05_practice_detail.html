@@ -21,33 +21,32 @@
 			{% include "theme/include/navbar.html" %}
 			<main class="content">
 				<div class="container-fluid p-0">
-					<h1 class="h3 mb-3">Practice Page</h1>
-						<table class="table">
-				
-							<thead>
-								<th>번호</th>
-								<th>제목</th>
-								<th>작성일시</th>
-							</thead>
+					<h1 class="h3 mb-3">Practice Page_Detail</h1>
+					
+					<div class="row">
+						<div class="col-12">
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title mb-0">{{ question.subject }}</h5>
+								</div>
+								<div class="card-body">
+								</div>
+							</div>
+						</div>
+					</div>
 
-							<tbody>
-								{% if question_list %}
-								{% for question in question_list %}
-								<tr>
-								<td>{{ forloop.counter }}</td>
-								<td>
-								<a href="/CRM/theme/practice/{{ question.id }}">{{ question.subject }}</a>
-								</td>
-								<td>{{ question.create_date }}</td>
-								</tr>
-								{% endfor %}
-								{% else %}
-								<tr>
-								<td colspan="3">질문이 없습니다.</td>
-								</tr>
-								{% endif %}
-							</tbody>
-						</table>
+					<div class="row">
+						<div class="col-12">
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title mb-0">{{ question.content }}</h5>
+								</div>
+								<div class="card-body">
+								</div>
+							</div>
+						</div>
+					</div>
+
 				</div>
 			</main>
 			{% include "theme/include/footer2.html" %}	

@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Question
 
 # Create your views here.
@@ -51,15 +51,19 @@ class theme :
 # ---------------------------------- [edit] ---------------------------------- #
     def theme_practice(request):
         print("PAGE : theme_practice")
+        page ='Practice'
         question_list = Question.objects.order_by('-create_date')
-        context = {'question_list': question_list}
+        context = {'question_list': question_list,
+        'page' : page}
         return render(request, './theme/05_practice.html', context)
         
-    # def theme_practice_detail(request, question_id):
-    #     print("PAGE : theme_practice_detail")
-    #     question = Question.objects.get(id=question_id)
-    #     context = {'question': question}
-    #     return render(request, './theme/05_practice.html', context)
+    def theme_practice_detail(request, question_id):
+        print("PAGE : theme_practice_detail")
+        page ='Practice'
+        question = get_object_or_404(Question, pk=question_id)
+        context = {'question': question,
+        'page' : page}
+        return render(request, './theme/05_practice_detail.html', context)
 # ---------------------------------- [edit] ---------------------------------- #
     def theme_UI_Element(request, page):
         print("PAGE : ",page)
