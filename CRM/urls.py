@@ -2,12 +2,14 @@ from django.urls import path
 
 from CRM import views
 
+app_name='CRM'
 urlpatterns = [
     # path('test/', views.index),
 
 # ---------------------------------- [edit] ---------------------------------- #
-    path('theme/practice/', views.theme.theme_practice, name='05_practice.html'),
-    path('theme/practice/<int:question_id>/', views.theme.theme_practice_detail, name='05_practice_detail.html'),
+    path('theme/practice/', views.theme.theme_practice, name='practice'),
+    path('theme/practice/<int:question_id>/', views.theme.theme_practice_detail, name='practice_detail'),
+    path('theme/practice/answer/create/<int:question_id>/', views.theme.theme_practice_ans_create, name='practice_ans_create'),
 #***********************************************************************#
     # Original Theme
     path('theme/index/', views.theme.theme_index, name='01_index.html'),

@@ -32,22 +32,24 @@
 
 							<tbody>
 								{% if question_list %}
-								{% for question in question_list %}
-								<tr>
-								<td>{{ forloop.counter }}</td>
-								<td>
-								<a href="/CRM/theme/practice/{{ question.id }}">{{ question.subject }}</a>
-								</td>
-								<td>{{ question.create_date }}</td>
-								</tr>
-								{% endfor %}
+									{% for question in question_list %}
+									<tr>
+									<td>{{ forloop.counter }}</td>
+									<td>
+									{% comment %} <a href="{{ question.id }}">{{ question.subject }}</a> {% endcomment %}
+									<a href="{% url 'CRM:practice_detail' question.id %}">{{ question.subject }}</a>
+									</td>
+									<td>{{ question.create_date }}</td>
+									</tr>
+									{% endfor %}
 								{% else %}
-								<tr>
-								<td colspan="3">질문이 없습니다.</td>
-								</tr>
+									<tr>
+									<td colspan="3">질문이 없습니다.</td>
+									</tr>
 								{% endif %}
 							</tbody>
 						</table>
+						<a href="#" class="btn btn-pill btn-primary">질문 등록하기</a>
 				</div>
 			</main>
 			{% include "theme/include/footer2.html" %}	

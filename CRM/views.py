@@ -1,6 +1,7 @@
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from .models import Question
+from django.utils import timezone
 
 # Create your views here.
 def index(request):
@@ -64,6 +65,14 @@ class theme :
         context = {'question': question,
         'page' : page}
         return render(request, './theme/05_practice_detail.html', context)
+
+    def theme_practice_ans_create(request, question_id):
+        print("PAGE : theme_practice_ans_create")
+        page ='Practice'
+        question = get_object_or_404(Question, pk=question_id)
+        question.answer_set.create(
+            content=request.POST.get('content'), create_date=timezone.now())
+        return redirect('CRM:practice_detail', question_id=question.id)
 # ---------------------------------- [edit] ---------------------------------- #
     def theme_UI_Element(request, page):
         print("PAGE : ",page)

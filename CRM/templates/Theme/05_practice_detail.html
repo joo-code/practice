@@ -21,32 +21,41 @@
 			{% include "theme/include/navbar.html" %}
 			<main class="content">
 				<div class="container-fluid p-0">
-					<h1 class="h3 mb-3">Practice Page_Detail</h1>
+					<div class="mb-3">
+						<a href="{% url 'CRM:practice' %}" class="btn btn-primary">
+						<i class="align-middle mr-2" data-feather="list"></i>목차</a>
+						<h1 class="h3 mb-3">Practice Page_Detail</h1>
+						
+					</div>
 					
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title mb-0">{{ question.subject }}</h5>
+									<h1 class="card-title mb-0"><strong>{{ question.subject }}</strong></h1>
 								</div>
 								<div class="card-body">
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-12">
-							<div class="card">
-								<div class="card-header">
+									{% comment %} <img class="card-img-top" src="{% static 'img/photos/unsplash-1.jpg' %}" alt="Unsplash"> {% endcomment %}
 									<h5 class="card-title mb-0">{{ question.content }}</h5>
 								</div>
 								<div class="card-body">
-								</div>
+									<h5 class="card-title mb-0">{{ question.answer_set.count }}개의 답변이 있습니다.</h5>
+									<div>
+									    <ul>
+											{% for answer in question.answer_set.all %}
+											<li>{{ answer.content }}</li>
+											{% endfor %}
+										</ul>
+									</div>
+								<form action="{% url 'CRM:practice_ans_create' question.id %}" method="post">
+								{% csrf_token %}
+									<textarea class="form-control" name="content" id="content" rows="2"></textarea>
+									{% comment %} <textarea name="content" id="content" rows="5"></textarea> {% endcomment %}
+									<input type="submit" class="btn btn-pill btn-primary" value="답변 등록">
+								</form>
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</main>
 			{% include "theme/include/footer2.html" %}	
