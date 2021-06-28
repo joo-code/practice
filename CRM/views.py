@@ -1,7 +1,7 @@
 from django.core import paginator
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
-from .models import Question
+from .models import Question, Hospital
 from django.utils import timezone
 from django.core.paginator import Paginator
 
@@ -52,6 +52,11 @@ class theme :
         }
         return render(request, './theme/05_blank.html', context)
 # ---------------------------------- [edit] ---------------------------------- #
+    def theme_hospital(request):
+        lst_hospital = Hospital.objects.all()
+        context = {'lst_hospital':lst_hospital}
+        return render(request, './theme/lst_hospital.html', context)
+
     def theme_practice(request):
         print("PAGE : theme_practice")
         page ='Practice'

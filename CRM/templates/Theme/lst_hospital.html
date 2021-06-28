@@ -1,0 +1,23 @@
+<h1>병원정보</h1>
+<body>
+    <table>
+        <tr>
+            <td>sido</td>
+            <td>name</td>
+            <td>medical</td>
+            <td>room</td>
+            <td>tell</td>
+            <td>address</td>
+        </tr>
+        {% for h in lst_hospital %}
+        <tr>
+            <td> {{h.sido}} </td>
+            <td> {{h.name}} </td>
+            <td> {{h.medical}} </td>
+            <td> {{h.room}} </td>
+            <td> {{h.tell}} </td>
+            <td> {{h.address}} </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
