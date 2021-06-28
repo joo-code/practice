@@ -12,7 +12,7 @@
 	<title>Practice Page | 19tak</title>
 	<link href="{% static 'css/app.css' %}" rel="stylesheet">
 </head>
-
+{% load CRM_filter %}
 <body>
 	<div class="wrapper">
 		<!-- SIDEBAR -->
@@ -34,8 +34,8 @@
 								{% if question_list %}
 									{% for question in question_list %}
 									<tr>
-									{% comment %} <td>{{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1 }}</td> {% endcomment %}
-									<td>{{ forloop.counter }}</td>
+									<td>{{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1 }}</td>
+									{% comment %} <td>{{ forloop.counter }}</td> {% endcomment %}
 									<td>
 									<a href="{% url 'CRM:practice_detail' question.id %}">{{ question.subject }}</a>
 									</td>
