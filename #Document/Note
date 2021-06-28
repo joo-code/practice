@@ -20,4 +20,7 @@ python -m pip install --upgrade pip
     - ERP 기능별 메뉴 생성
     - ERP Dashboard 수정
 
+2021-06-28
+    - GIT 절차 규칙 기록
+    - DB 연동 게시판 만들기 연습(김영주, 유수진)
     
