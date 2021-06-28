@@ -20,7 +20,7 @@ import BRAND
 
 from BRAND import views
 from CRM import views
-from KFQ import views
+# from KFQ import views
 
 urlpatterns = [
     path('',BRAND.views.theme_index),
@@ -37,5 +37,8 @@ urlpatterns = [
 
 
     #한국품질재단 교육
-    path('KFQ/', include('KFQ.urls')),
+    # path('KFQ/', include('KFQ.urls')),
+
+    #log in and out 앱
+    path('logIO/',include('logIO.urls')),
 ]

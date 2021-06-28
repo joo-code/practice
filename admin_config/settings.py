@@ -25,8 +25,8 @@ SECRET_KEY = 'cseet^f&c)ecu)skx$_+^ol1v4l=3=gjz14(rjy1^xeq^qb&nv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','192.168.0.124','192.168.0.125']
-# ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['127.0.0.1','192.168.0.124','192.168.0.125']
+ALLOWED_HOSTS = []
 
 
 # Application definition/ App 등록
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'BRAND',
     'CRM',
-    'KFQ',
+    'logIO',
 ]
 
 MIDDLEWARE = [
@@ -107,10 +107,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 USE_I18N = True
 
 USE_L10N = True
