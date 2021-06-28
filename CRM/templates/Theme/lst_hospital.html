@@ -28,6 +28,7 @@
 							<thead>
                                 <th>no.</th>
 								<th>name</th>
+								<th>sido</th>
 								<th>medical</th>
                                 <th>room</th>
                                 <th>tel</th>
@@ -39,6 +40,7 @@
 									{% for h in lst_hospital %}
 									<tr>
 									<td>{{ lst_hospital.paginator.count|sub:lst_hospital.start_index|sub:forloop.counter0|add:1 }}</td>
+									<td>{{ h.name }}</td>
 									<td>{{ h.sido }}</td>
 									<td>{{ h.medical }}</td>
                                     <td>{{ h.room }}</td>
