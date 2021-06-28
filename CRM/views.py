@@ -1,7 +1,9 @@
+from django.core import paginator
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Question
 from django.utils import timezone
+from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
@@ -53,8 +55,11 @@ class theme :
     def theme_practice(request):
         print("PAGE : theme_practice")
         page ='Practice'
-        question_list = Question.objects.order_by('-create_date')
-        context = {'question_list': question_list,
+        pg = request.GET.get('page','1') # 입력파라미터, 페이지
+        question_list = Question.objects.order_by('-create_date') # 조회
+        paginator = Paginator(question_list, 10) # 페이지 정리, 10개씩
+        pg_obj = paginator.get_page(pg)
+        context = {'question_list': pg_obj,
         'page' : page}
         return render(request, './theme/05_practice.html', context)
         
