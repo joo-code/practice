@@ -7,10 +7,12 @@ urlpatterns = [
     # path('test/', views.index),
 
 # ---------------------------------- [edit] ---------------------------------- #
-    path('theme/practice/lst_hospital', views.theme.theme_hospital, name='hospital'),
+    #path('theme/practice/lst_hospital', views.theme.theme_hospital, name='hospital'),
     path('theme/practice/', views.theme.theme_practice, name='practice'),
     path('theme/practice/<int:question_id>/', views.theme.theme_practice_detail, name='practice_detail'),
     path('theme/practice/answer/create/<int:question_id>/', views.theme.theme_practice_ans_create, name='practice_ans_create'),
+#***********************************************************************#
+    path('theme/hospital', views.theme.theme_hospital, name='hospital'),
 #***********************************************************************#
     # Original Theme
     path('theme/index/', views.theme.theme_index, name='01_index.html'),

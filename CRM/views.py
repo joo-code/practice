@@ -53,8 +53,13 @@ class theme :
         return render(request, './theme/05_blank.html', context)
 # ---------------------------------- [edit] ---------------------------------- #
     def theme_hospital(request):
+        print("PAGE : theme_hospital")
+        page = 'Hospital'
+        pg = request.GET.get('page','1')
         lst_hospital = Hospital.objects.all()
-        context = {'lst_hospital':lst_hospital}
+        paginator = Paginator(lst_hospital, 15) # 페이지 정리, 15개씩
+        pg_obj = paginator.get_page(pg)
+        context = {'lst_hospital':pg_obj, 'page':page}
         return render(request, './theme/lst_hospital.html', context)
 
     def theme_practice(request):
