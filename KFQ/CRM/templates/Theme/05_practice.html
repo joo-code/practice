@@ -55,6 +55,7 @@
 						<!-- ------------------------------- [edit] -------------------------------- -->
 						<!-- 페이징처리 시작 -->
 						<ul class="pagination justify-content-center">
+						<a class="page-link" href="?page=1">처음</a>
 						<!-- 이전페이지 -->
 						{% if question_list.has_previous %}
 						    <li class="page-item">
@@ -89,10 +90,11 @@
 							<a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
 							</li>
 						{% endif %}
+						<a class="page-link" href="?page={{ question_list.paginator.count }}">끝</a>
 						</ul>
 						<!-- 페이징처리 끝 -->
 <!-- ----------------------------------------------------------------------- -->    
-						<a href="#" class="btn btn-pill btn-primary">질문 등록하기</a>
+						<a href="{% url 'CRM:practice_q_create' %}" class="btn btn-pill btn-primary">질문 등록하기</a>
 				</div>
 			</main>
 			{% include "theme/include/footer2.html" %}	

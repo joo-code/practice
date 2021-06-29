@@ -8,6 +8,7 @@ urlpatterns = [
 
 # ---------------------------------- [edit] ---------------------------------- #
     #path('theme/practice/lst_hospital', views.theme.theme_hospital, name='hospital'),
+    path('theme/practice/question/create',views.theme.theme_practice_question_create, name='practice_q_create'),
     path('theme/practice/', views.theme.theme_practice, name='practice'),
     path('theme/practice/<int:question_id>/', views.theme.theme_practice_detail, name='practice_detail'),
     path('theme/practice/answer/create/<int:question_id>/', views.theme.theme_practice_ans_create, name='practice_ans_create'),

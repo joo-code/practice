@@ -1,9 +1,10 @@
-from django.core import paginator
+# from django.core import paginator
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Question, Hospital
 from django.utils import timezone
 from django.core.paginator import Paginator
+from .forms import QuestionForm
 
 # Create your views here.
 def index(request):
@@ -88,7 +89,35 @@ class theme :
         question.answer_set.create(
             content=request.POST.get('content'), create_date=timezone.now())
         return redirect('CRM:practice_detail', question_id=question.id)
+
+    def theme_practice_question_create(request):
+        if request.method == 'POST':
+            form = QuestionForm(request.POST)
+            if form.is_valid():
+                question = form.save(commit=False)
+                question.create_date = timezone.now()
+                question.save()
+                return redirect('CRM:practice')
+        else:
+            form = QuestionForm()
+        context = {
+            'form' : form
+        }
+        return render(request,'./theme/05_practice_question_form.html',context)
+        # form = QuestionForm()
+        # if form.is_valid():
+        #     question = form.save(commit=False)
+        #     question.create_date = timezone.now()
+        #     question.save()
+        #     return redirect('CRM:practice')
+        # else:
+        #     form=QuestionForm()
+        # context={
+        #     'form' : form
+        # }
+        # return render(request, './theme/05_practice_question_form.html',context)
 # ---------------------------------- [edit] ---------------------------------- #
+
     def theme_UI_Element(request, page):
         print("PAGE : ",page)
 
