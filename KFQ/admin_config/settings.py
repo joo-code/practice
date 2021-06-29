@@ -143,3 +143,7 @@ LOGGING = {
         },
     }
 }
+
+# 로그인 로그아웃 시 이동 경로
+LOGIN_REDIRECT_URL ='/CRM/theme/index/'
+LOGOUT_REDIRECT_URL ='/BRAND/theme/index/'
