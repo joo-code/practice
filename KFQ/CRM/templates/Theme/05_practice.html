@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko-kr">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+	<meta name="author" content="19tak">
+	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web,19tak">
+	<link rel="shortcut icon" href="{% static 'img/icons/icon-48x48.png' %}" />
+	<title>Practice Page | 19tak</title>
+	<link href="{% static 'css/app.css' %}" rel="stylesheet">
+</head>
+{% load CRM_filter %}
+<body>
+	<div class="wrapper">
+		<!-- SIDEBAR -->
+		{% include "theme/include/sidebar.html" %}
+		<div class="main">
+			{% include "theme/include/navbar.html" %}
+			<main class="content">
+				<div class="container-fluid p-0">
+					<h1 class="h3 mb-3">Practice Page</h1>
+						<table class="table">
+				
+							<thead>
+								<th>번호</th>
+								<th>제목</th>
+								<th>작성일시</th>
+							</thead>
+
+							<tbody>
+								{% if question_list %}
+									{% for question in question_list %}
+									<tr>
+									<td>{{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1 }}</td>
+									{% comment %} <td>{{ forloop.counter }}</td> {% endcomment %}
+									<td>
+									<a href="{% url 'CRM:practice_detail' question.id %}">{{ question.subject }}</a>
+									{% if question.answer_set.count > 0 %}
+										<span class="text-danger small ml-2">{{ question.answer_set.count }}</span>
+									{% endif %}
+									</td>
+									<td>{{ question.create_date }}</td>
+									</tr>
+									{% endfor %}
+								{% else %}
+									<tr>
+									<td colspan="3">질문이 없습니다.</td>
+									</tr>
+								{% endif %}
+							</tbody>
+						</table>
+						<!-- ------------------------------- [edit] -------------------------------- -->
+						<!-- 페이징처리 시작 -->
+						<ul class="pagination justify-content-center">
+						<!-- 이전페이지 -->
+						{% if question_list.has_previous %}
+						    <li class="page-item">
+							<a class="page-link" href="?page={{ question_list.previous_page_number }}">이전</a>
+							</li>
+						{% else %}
+						    <li class="page-item disabled">
+							<a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+							</li>
+						{% endif %}
+						<!-- 페이지리스트 -->
+						{% for page_number in question_list.paginator.page_range %}
+							{% if page_number >= question_list.number|add:-5 and page_number <= question_list.number|add:5 %}
+						    	{% if page_number == question_list.number %}
+								    <li class="page-item active" aria-current="page">
+									<a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+									</li>
+								{% else %}
+							  	  <li class="page-item">
+									<a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+									</li>
+								{% endif %}
+							{% endif %}
+						{% endfor %}
+						<!-- 다음페이지 -->
+						{% if question_list.has_next %}
+						    <li class="page-item">
+							<a class="page-link" href="?page={{ question_list.next_page_number }}">다음</a>
+							</li>
+						{% else %}
+						    <li class="page-item disabled">
+							<a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+							</li>
+						{% endif %}
+						</ul>
+						<!-- 페이징처리 끝 -->
+<!-- ----------------------------------------------------------------------- -->    
+						<a href="#" class="btn btn-pill btn-primary">질문 등록하기</a>
+				</div>
+			</main>
+			{% include "theme/include/footer2.html" %}	
+		</div>
+	</div>
+	
+
+	<script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>
